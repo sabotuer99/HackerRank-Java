@@ -42,6 +42,9 @@ public class BombermanGame {
         
         boolean[][] field = new boolean[R+2][C+2];
         
+        String full = fieldToString(field, false);
+        
+        
         for(int row = 1; row <=R; row++){
             char[] state = in.next().toCharArray();
             for(int col = 1; col <= C; col++){
@@ -51,21 +54,24 @@ public class BombermanGame {
         
         String initial = fieldToString(field, true);
         boolean bomb = true;
-        System.out.println(initial + "\n");
         
-        for(int i = 0; i < 10; i++){
-            
-            boolean[][] next = nextState(field, !bomb);
+        field = nextState(field, bomb);
         
-            String nextStr = fieldToString(next, bomb);
+        String even = fieldToString(field, !bomb);
+        
+        field = nextState(field, !bomb);
+        String odd = fieldToString(field, !bomb);
 
-            System.out.println(nextStr);
-            System.out.println();
-            bomb = !bomb;
+        if(S == 1){
+            System.out.println(initial + "\n");
+        } else if (S%2 == 0){
+            System.out.println(full + "\n");
+        } else if ((S+1)%4==0){
+            System.out.println(even + "\n");
+        } else {
+            System.out.println(odd + "\n");
         }
-        
-       
-        
+
         in.close();
         
     }
