@@ -41,5 +41,6 @@ public class BirthdayChocolate {
         int m = in.nextInt();
         int result = solve(n, s, d, m);
         System.out.println(result);
+        in.close();
     }
 }
