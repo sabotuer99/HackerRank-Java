@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int q = in.nextInt();
+        for(int a0 = 0; a0 < q; a0++){
+            int n = in.nextInt();
+            int[][] M = new int[n][n];
+            for(int M_i=0; M_i < n; M_i++){
+                for(int M_j=0; M_j < n; M_j++){
+                    M[M_i][M_j] = in.nextInt();
+                }
+            }
+            // your code goes here
+            // get row and col sums
+            int[] rowsums = new int[n];
+            int[] colsums = new int[n];
+            
+            for(int row = 0; row < n; row++){
+                for(int col = 0; col < n; col++){
+                    rowsums[row] += M[row][col];
+                    colsums[col] += M[row][col];
+                }
+            }
+            
+            Arrays.sort(rowsums);
+            Arrays.sort(colsums);
+            
+            boolean eq = true;
+            for(int i = 0; i < n; i++){
+                eq = rowsums[i] == colsums[i] && eq;
+            }
+            
+            if(eq){
+                System.out.println("Possible");
+            } else {
+                System.out.println("Impossible");
+            }
+        }
+    }
+}
